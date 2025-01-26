@@ -34,12 +34,11 @@ Swagger: Para documentação da API.
       http://localhost:8080/swagger-ui/index.html
 
 Retorno esperado:
- {
-  "cep": "string",
-  "logradouro": "string",
-  "numero": "string",
-  "complemento": "string",
-  "bairro": "string",
-  "localidade": "string",
-  "uf": "string"
+{
+    "cep": "string",
+    "logradouro": "string",
+    "bairro": "string",
+    "cidade": "string",
+    "estado": "string",
+    "fonte": "string"
 }
