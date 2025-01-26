@@ -19,3 +19,27 @@ JPA (Spring Data): Para gravação de logs de consulta no banco de dados.
 H2: Banco de dados para armazenamento dos logs de consultas.
 
 Swagger: Para documentação da API.
+
+
+---
+# Como utilizar
+
+1 -  Inicializando a Aplicação Para rodar a aplicação, basta executar o comando:
+      mvn spring-boot:run
+
+2 -  Consultando um CEP Para consultar um CEP, faça uma requisição GET para o seguinte endpoint:
+      GET /api/cep/{cep}
+
+3 -  Swagger A documentação interativa da API está disponível em:
+      http://localhost:8080/swagger-ui/index.html
+
+Retorno esperado:
+ {
+  "cep": "string",
+  "logradouro": "string",
+  "numero": "string",
+  "complemento": "string",
+  "bairro": "string",
+  "localidade": "string",
+  "uf": "string"
+}
