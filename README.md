@@ -8,8 +8,8 @@ Os logs das consultas precisam ser gravados em base de dados, com o horário da 
 
 Sua aplicação deverá utilizar os conceitos básicos de SOLID;
 
-<br>
-﻿#  Tecnologias Utilizadas
+---
+  Tecnologias Utilizadas
 
 Spring Boot: Framework para desenvolvimento da aplicação.
 RestTemplate: Cliente HTTP para realizar as requisições para os providers.
