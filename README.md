@@ -8,6 +8,7 @@ Os logs das consultas precisam ser gravados em base de dados, com o horário da 
 
 Sua aplicação deverá utilizar os conceitos básicos de SOLID;
 
+<br>
 ﻿#  Tecnologias Utilizadas
 
 Spring Boot: Framework para desenvolvimento da aplicação.
