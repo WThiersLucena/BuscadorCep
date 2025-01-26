@@ -35,10 +35,19 @@ Swagger: Para documentação da API.
 
 Retorno esperado:
 {
-    "cep": "string",
-    "logradouro": "string",
-    "bairro": "string",
-    "cidade": "string",
-    "estado": "string",
-    "fonte": "string"
+
+  "cep": "string",
+  
+  "logradouro": "string",
+  
+  "numero": "string",
+  
+  "complemento": "string",
+  
+  "bairro": "string",
+  
+  "localidade": "string",
+  
+  "uf": "string"
+  
 }
