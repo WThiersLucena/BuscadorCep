@@ -44,3 +44,8 @@ Retorno esperado:
             "localidade": "string",  
             "uf": "string"  
     }
+
+
+
+
+![image](https://github.com/user-attachments/assets/e3185442-b05b-446b-9251-001a84eba647)
