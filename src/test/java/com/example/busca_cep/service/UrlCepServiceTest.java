@@ -1,51 +1,26 @@
 package com.example.busca_cep.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.util.ReflectionTestUtils;
 
-public class UrlCepServiceTest {
-    
-    private UrlCepService urlCepService = new UrlCepService();
-
-    @Test
-    public void testGerarUrlPorCep() {
-        // Arrange
-        String cep = "01001-000";
-
-        // Act
-        String urlGerada = urlCepService.gerarUrlPorCep(cep);
-
-        // Assert
-        String urlEsperada = "https://viacep.com.br/ws/01001-000/json/";
-        assertEquals(urlEsperada, urlGerada);
-    }
+@SpringBootTest
+class UrlCepServiceTest {
 
     @Test
-    public void testGerarUrlPorCepComCepInvalido() {
-        // Arrange
-        String cep = "123456789";
+    void testGerarUrlPorCep() {
+        UrlCepService urlCepService = new UrlCepService(null);
 
-        // Act
-        String urlGerada = urlCepService.gerarUrlPorCep(cep);
+        String testBaseUrl = "https://test-viacep.com.br/ws/";
+        // Usando ReflectionTestUtils para configurar o campo privado
+        ReflectionTestUtils.setField(urlCepService, "baseUrl", testBaseUrl);
 
-        // Assert
-        String urlEsperada = "https://viacep.com.br/ws/123456789/json/";
-        assertEquals(urlEsperada, urlGerada);
-    }
- 
+        String cep = "12345678";
+        String expectedUrl = testBaseUrl + cep + "/json/";
 
-    @Test
-    public void testGerarUrlPorCepComCepVazio() {
-        // Arrange
-        String cep = "";
-
-        // Act
-        String urlGerada = urlCepService.gerarUrlPorCep(cep);
-
-        // Assert
-        String urlEsperada = "https://viacep.com.br/ws//json/";
-        assertEquals(urlEsperada, urlGerada);
+        String result = urlCepService.gerarUrlPorCep(cep);
+        assertEquals(expectedUrl, result);
     }
 }

@@ -12,11 +12,16 @@ public class HttpClientService {
     
     private static final Logger logger = LoggerFactory.getLogger(ConsultaCepService.class);
 
+    private final RestTemplate restTemplate;
+
+    // Injeção do RestTemplate no construtor
+    public HttpClientService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public EnderecoDTO getEndereco(String url) {
-        
-        RestTemplate restTemplate = new RestTemplate();
-        logger.info(" 4º HttpClientService > " + url, EnderecoDTO.class);
+        logger.info("4º HttpClientService > " + url);
         return restTemplate.getForObject(url, EnderecoDTO.class);
     }
-    
+
 }

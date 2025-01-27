@@ -1,65 +1,66 @@
-// package com.example.busca_cep.service;
+package com.example.busca_cep.service;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertThrows;
-// import static org.mockito.ArgumentMatchers.any;
-// import static org.mockito.Mockito.verify;
-// import static org.mockito.Mockito.when;
+import com.example.busca_cep.dto.EnderecoDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-// import com.example.busca_cep.dto.EnderecoDTO;
-// import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
-// import org.junit.jupiter.api.Test;
-// import org.junit.jupiter.api.extension.ExtendWith;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.junit.jupiter.MockitoExtension;
-// import org.slf4j.Logger;
+class JsonConversionServiceTest {
 
-// @ExtendWith(MockitoExtension.class)
-// public class JsonConversionServiceTest {
+    @Mock
+    private ObjectMapper objectMapper;
 
-//     @Mock
-//     private Logger logger;
+    @InjectMocks
+    private JsonConversionService jsonConversionService;
 
-//     @Mock
-//     private ObjectMapper objectMapper;
+    @BeforeEach
+    void setup() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-//     @InjectMocks
-//     private JsonConversionService jsonConversionService;
+    @Test
+    void deveConverterParaJsonComSucesso() throws Exception {
+        
+        EnderecoDTO enderecoDTO = new EnderecoDTO();
+        enderecoDTO.setCep("12345678");
+        enderecoDTO.setLogradouro("Rua Exemplo");
+        enderecoDTO.setBairro("Bairro Exemplo");
+        enderecoDTO.setLocalidade("Cidade Exemplo");
+        enderecoDTO.setUf("Estado Exemplo");
 
-//     @Test
-//     public void testConverterParaJson() throws Exception {
-//         // Arrange
-//         EnderecoDTO endereco = new EnderecoDTO("01001-000", "Praça da Sé", "São Paulo", "SP", null, null, null);
-//         String jsonEsperado = "{\"cep\":\"01001-000\",\"logradouro\":\"Praça da Sé\",\"cidade\":\"São Paulo\",\"uf\":\"SP\"}";
+        String enderecoJson = "{\"cep\":\"12345678\",\"logradouro\":\"Rua Exemplo\",\"bairro\":\"Bairro Exemplo\",\"cidade\":\"Cidade Exemplo\",\"estado\":\"Estado Exemplo\"}";
 
-//         // Act
-//         when(objectMapper.writeValueAsString(any(EnderecoDTO.class))).thenReturn(jsonEsperado);
-//         String jsonGerado = jsonConversionService.converterParaJson(endereco);
+        Mockito.when(objectMapper.writeValueAsString(enderecoDTO)).thenReturn(enderecoJson);
 
-//         // Assert
-//         assertEquals(jsonEsperado, jsonGerado);
-//         verify(logger).info(" 5º converterParaJson > " + jsonEsperado);
-//     }
+        
+        String resultado = jsonConversionService.converterParaJson(enderecoDTO);
 
-//     @Test
-//     public void testConverterParaJsonComEnderecoNull() {
-//         // Arrange
-//         EnderecoDTO endereco = null;
+        
+        Assertions.assertNotNull(resultado);
+        Assertions.assertEquals(enderecoJson, resultado);
+        Mockito.verify(objectMapper).writeValueAsString(enderecoDTO);
+    }
 
-//         // Act e Assert
-//         assertThrows(NullPointerException.class, () -> jsonConversionService.converterParaJson(endereco));
-//     }
+    @Test
+    void deveLancarExcecaoAoConverterParaJson() throws JsonProcessingException {
 
-//     @Test
-//     public void testConverterParaJsonComException() throws Exception {
-//         // Arrange
-//         EnderecoDTO endereco = new EnderecoDTO("01001-000", "Praça da Sé", "São Paulo", "SP", null, null, null);
-//         when(objectMapper.writeValueAsString(any(EnderecoDTO.class))).thenThrow(new Exception("Erro ao converter para JSON"));
+        
+        EnderecoDTO enderecoDTO = new EnderecoDTO();
+        Mockito.when(objectMapper.writeValueAsString(enderecoDTO))
+                .thenThrow(new RuntimeException("Erro ao converter para JSON"));
 
-//         // Act e Assert
-//         assertThrows(Exception.class, () -> jsonConversionService.converterParaJson(endereco));
-//     }
-    
-// }
+        
+        Exception exception = Assertions.assertThrows(Exception.class,
+                () -> jsonConversionService.converterParaJson(enderecoDTO));
+        Assertions.assertEquals("Erro ao converter para JSON", exception.getMessage());
+        Mockito.verify(objectMapper).writeValueAsString(enderecoDTO);
+    }
+
+}

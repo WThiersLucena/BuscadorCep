@@ -20,24 +20,14 @@ public class ConsultaCepController {
 
     private static final Logger logger = LoggerFactory.getLogger(ConsultaCepController.class);
 
-    
     @Autowired
-    private ConsultaCepService consultaCepService;    
+    private ConsultaCepService consultaCepService;
 
     @GetMapping("/{cep}")
-    public EnderecoDTO buscarCep(@PathVariable("cep") @NotBlank(message = "O CEP deve ser informado e não pode estar em branco") String cep) throws Exception {
+    public EnderecoDTO buscarCep(
+            @PathVariable("cep") @NotBlank(message = "O CEP deve ser informado e não pode estar em branco") String cep)
+            throws Exception {
         logger.info("Iniciando --- Controller > busca de CEP: {}", cep);
         return consultaCepService.buscarCep(cep);
     }
-
-    
-
-    // Endpoint para verificar o status da aplicação
-    @GetMapping("/ola")
-    public String ola() {
-        System.out.println("Chamada de Teste ");
-        logger.info("Endpoint de teste chamado");
-        return "app on";
-    }
-    
 }

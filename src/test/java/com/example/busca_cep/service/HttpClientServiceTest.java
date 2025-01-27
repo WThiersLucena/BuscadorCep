@@ -1,60 +1,61 @@
-// package com.example.busca_cep.service;
+package com.example.busca_cep.service;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertNotNull;
-// import static org.mockito.Mockito.times;
-// import static org.mockito.Mockito.verify;
-// import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-// import com.example.busca_cep.dto.EnderecoDTO;
+import com.example.busca_cep.dto.EnderecoDTO;
 
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
-// import org.springframework.web.client.RestTemplate;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.web.client.RestTemplate;
 
-// public class HttpClientServiceTest {
-    
-//     @InjectMocks
-//     private HttpClientService httpClientService;
+public class HttpClientServiceTest {
 
-//     @Mock
-//     private RestTemplate restTemplate;
+    @InjectMocks
+    private HttpClientService httpClientService;
 
-//     @BeforeEach
-//     void setUp() {
-//         MockitoAnnotations.openMocks(this);
-//     }
+    @Mock
+    private RestTemplate restTemplate;
 
-//     @Test
-//     void testGetEndereco() {
-//         // Arrange
-//         String url = "http://fake-url.com/cep/12345678";
-//         EnderecoDTO mockEndereco = new EnderecoDTO();
-//         mockEndereco.setCep("12345678");
-//         mockEndereco.setLogradouro("Rua Exemplo");
-//         mockEndereco.setBairro("Bairro Exemplo");
-//         mockEndereco.setLocalidade("Cidade Exemplo");
-//         mockEndereco.setUf("Estado Exemplo");
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-//         // Configurando o mock para simular a resposta do RestTemplate
-//         when(restTemplate.getForObject(url, EnderecoDTO.class)).thenReturn(mockEndereco);
+    @Test
+    void testGetEndereco() {
+        // Arrange
+        String url = "http://fake-url.com/cep/12345678";
 
-//         // Act
-//         EnderecoDTO result = httpClientService.getEndereco(url);
+        EnderecoDTO mockEndereco = new EnderecoDTO();
+        mockEndereco.setCep("12345678");
+        mockEndereco.setLogradouro("Rua Exemplo");
+        mockEndereco.setBairro("Bairro Exemplo");
+        mockEndereco.setLocalidade("Cidade Exemplo");
+        mockEndereco.setUf("Estado Exemplo");
 
-//         // Assert
-//         assertNotNull(result);
-//         assertEquals("12345678", result.getCep());
-//         assertEquals("Rua Exemplo", result.getLogradouro());
-//         assertEquals("Bairro Exemplo", result.getBairro());
-//         assertEquals("Cidade Exemplo", result.getLocalidade());
-//         assertEquals("Estado Exemplo", result.getUf());
+        // Configurando o mock do RestTemplate
+        when(restTemplate.getForObject(url, EnderecoDTO.class)).thenReturn(mockEndereco);
 
-//         // Verificando se o RestTemplate foi chamado exatamente uma vez
-//         verify(restTemplate, times(1)).getForObject(url, EnderecoDTO.class);
-//     }
+        // Act
+        EnderecoDTO result = httpClientService.getEndereco(url);
 
-// }
+        // Assert
+        assertNotNull(result);
+        assertEquals("12345678", result.getCep());
+        assertEquals("Rua Exemplo", result.getLogradouro());
+        assertEquals("Bairro Exemplo", result.getBairro());
+        assertEquals("Cidade Exemplo", result.getLocalidade());
+        assertEquals("Estado Exemplo", result.getUf());
+
+        // Verificando se o RestTemplate foi chamado corretamente
+        verify(restTemplate, times(1)).getForObject(url, EnderecoDTO.class);
+    }
+
+}
