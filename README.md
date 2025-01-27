@@ -46,6 +46,7 @@ Retorno esperado:
     }
 
 
+Fluxo da Consulta de CEP
 
+![image](https://github.com/user-attachments/assets/4aafd196-14e1-4466-b85d-6d7685daa62f)
 
-![image](https://github.com/user-attachments/assets/e3185442-b05b-446b-9251-001a84eba647)
