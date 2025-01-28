@@ -16,8 +16,7 @@ RestTemplate: Cliente HTTP para realizar as requisições para os providers.
 
 JPA (Spring Data): Para gravação de logs de consulta no banco de dados.
 
-H2: Banco de dados para armazenamento dos logs de consultas.
-
+Docker : Postgres Banco de dados para armazenamento dos logs.
 
 
 ---
