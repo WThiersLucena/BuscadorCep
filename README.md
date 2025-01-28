@@ -44,3 +44,12 @@ Retorno esperado:
             "localidade": "string",  
             "uf": "string"  
     }
+
+
+# Fluxo da Consulta de CEP
+
+![image](https://github.com/user-attachments/assets/cac91661-3192-4f4c-87b4-8428d7a654cd)
+
+
+
+
