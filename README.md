@@ -47,6 +47,10 @@ Retorno esperado:
 
 ![image](https://github.com/user-attachments/assets/cac91661-3192-4f4c-87b4-8428d7a654cd)
 
+# Visualização do Banco
+![image](https://github.com/user-attachments/assets/2ffea8a1-1680-42d0-a7c8-3f09e86ad48a)
+
+
 
 
 
