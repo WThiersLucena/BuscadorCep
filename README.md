@@ -29,8 +29,6 @@ H2: Banco de dados para armazenamento dos logs de consultas.
 2 -  Consultando um CEP Para consultar um CEP, faça uma requisição GET para o seguinte endpoint:
       GET /api/cep/{cep}
 
-3 -  Swagger A documentação interativa da API está disponível em:
-      http://localhost:8080/swagger-ui/index.html
 
 Retorno esperado:
  
