@@ -10,17 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 public class UrlCepService {
     private static final Logger logger = LoggerFactory.getLogger(ConsultaCepService.class);
 
-    // private static final String BASE_URL = "https://viacep.com.br/ws/";
-
-    // Método responsável por criar a URL
-    // public String gerarUrlPorCep(String cep) {
-    // logger.info(" 3º Criando URL > " + BASE_URL + cep + "/json/");
-    // return BASE_URL + cep + "/json/";
-    // }
-
-
-    
-
     // Injetando a URL base do ambiente através de uma variável de ambiente ou
     // arquivo de configuração
     private final String baseUrl;
