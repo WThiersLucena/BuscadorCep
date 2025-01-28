@@ -18,7 +18,6 @@ JPA (Spring Data): Para gravação de logs de consulta no banco de dados.
 
 H2: Banco de dados para armazenamento dos logs de consultas.
 
-Swagger: Para documentação da API.
 
 
 ---
@@ -30,8 +29,6 @@ Swagger: Para documentação da API.
 2 -  Consultando um CEP Para consultar um CEP, faça uma requisição GET para o seguinte endpoint:
       GET /api/cep/{cep}
 
-3 -  Swagger A documentação interativa da API está disponível em:
-      http://localhost:8080/swagger-ui/index.html
 
 Retorno esperado:
  
@@ -49,6 +46,10 @@ Retorno esperado:
 # Fluxo da Consulta de CEP
 
 ![image](https://github.com/user-attachments/assets/cac91661-3192-4f4c-87b4-8428d7a654cd)
+
+# Visualização do Banco
+![image](https://github.com/user-attachments/assets/2ffea8a1-1680-42d0-a7c8-3f09e86ad48a)
+
 
 
 
